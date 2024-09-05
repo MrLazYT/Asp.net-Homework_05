@@ -1,0 +1,45 @@
+﻿@page "{selectedGenre?}"
+@model practice.Pages.Books.AddModel
+@{
+}
+
+<div>
+	<h1>Adding a book</h1>
+	
+	<form method="post">
+		<div>
+			<label class="form-label m-1" asp-for="Book.Title">Title</label>
+			<input class="form-control m-1" asp-for="Book.Title" />
+		</div>
+
+		<div>
+			<label class="form-label m-1" asp-for="Book.Author">Author</label>
+			<input class="form-control m-1" asp-for="Book.Author" />
+		</div>
+
+		<div>
+			<label class="form-label m-1" name="selectedGenre">Genre</label>
+
+			<select class="form-select m-1" name="selectedGenre">
+				@foreach(var genre in Model.Genres)
+				{
+					<option value="@genre.Title">@genre.Title</option>
+				}
+			</select>
+		</div>
+
+		<div>
+			<label class="form-label m-1" asp-for="Book.PublishingHouse">Publishing House</label>
+			<input class="form-control m-1" asp-for="Book.PublishingHouse" />
+		</div>
+
+		<div>
+			<label class="form-label m-1" asp-for="Book.Year">Year</label>
+			<input class="form-control m-1" type="number" asp-for="Book.Year" />
+		</div>
+
+		<div>
+			<button class="btn btn-danger m-1">Add</button>
+		</div>
+	</form>
+</div>

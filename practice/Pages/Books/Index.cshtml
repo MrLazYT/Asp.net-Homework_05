@@ -1,0 +1,62 @@
+﻿@page "{id:int?}/{searchValue?}/{searchingType?}"
+@model practice.Pages.Books.IndexModel
+@{
+}
+
+<div>
+	<div class="container">
+		<a class="btn btn-danger m-1" asp-page="Add">Add Book</a>
+	</div>
+
+	<div class="container">
+		<form method="post">
+			<input class="form-control m-1" name="searchValue" />
+
+			<select class="form-select m-1" name="searchingType">
+				<option value="byTitle">By Title</option>
+				<option value="byAuthor">By Author</option>
+				<option value="byGenre">By Genre</option>
+				<option value="byPublishingHouse">By Publishing House</option>
+			</select>
+
+			<button class="btn btn-danger m-1" asp-page-handler="Search">Search</button>
+		</form>
+	</div>
+
+	<table class="table table-success m-1">
+		<thead class="thead-light">
+			<tr>
+				<th scope="col">Id</th>
+				<th scope="col">Title</th>
+				<th scope="col">Author</th>
+				<th scope="col">Genre</th>
+				<th scope="col">Publihing House</th>
+				<th scope="col">Year</th>
+				<th scope="col"></th>
+			</tr>
+		</thead>
+		<tbody>
+			@if(Model.Books != null)
+			{
+				@foreach(var book in Model.Books)
+				{
+					<tr>
+						<th scope="row">@book.Id</th>
+						<td>@book.Title</td>
+						<td>@book.Author</td>
+						<td>@book.Genre</td>
+						<td>@book.PublishingHouse</td>
+						<td>@book.Year</td>
+						<td>
+							<form method="post">
+								<a class="m-1" asp-page="Details" asp-route-id="@book.Id">Details</a> |
+								<a class="m-1" asp-page="Edit" asp-route-id="@book.Id">Edit</a> |
+								<button class="btn btn-danger m-1" asp-page-handler="DeleteBook" asp-route-id="@book.Id">Delete</button>
+							</form>
+						</td>
+					</tr>
+				}
+			}
+		</tbody>
+	</table>
+</div>

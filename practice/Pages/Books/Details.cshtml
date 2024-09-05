@@ -1,0 +1,14 @@
+﻿@page "{id:int}"
+@model practice.Pages.Books.DetailsModel
+@{
+}
+
+<div>
+	<h1>@Model.Book.Title</h1>
+	<h2>@Model.Book.Author</h2>
+	<h3>@Model.Book.PublishingHouse</h3>
+	<p>@Model.Book.Genre</p>
+	<p>@Model.Book.Year</p>
+
+	<a asp-page="../Index">Back</a>
+</div>
